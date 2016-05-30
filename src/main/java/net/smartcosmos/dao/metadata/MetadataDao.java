@@ -4,21 +4,22 @@ import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataUpsert;
 
 import javax.validation.ConstraintViolationException;
+import java.util.List;
 import java.util.Optional;
 
 public interface MetadataDao {
 
     /**
-     * Upserts a metadata entity associated to a reference entity in the realm of a given account.
+     * Upserts a list of metadata entities associated to a reference entity in the realm of a given account.
      *
      * @param accountUrn the account URN
      * @param entityReferenceType the reference type of the associated entity
      * @param referenceUrn the URN of the associated entity
-     * @param metadataCreate the metadata to create
-     * @return an {@link MetadataResponse} instance for the created metadata
+     * @param metadataUpsertList the list containing the metadata entries to upsert
+     * @return an {@link MetadataResponse} list for the upserted metadata
      * @throws ConstraintViolationException if the {@link MetadataUpsert} violates constraints enforced by the persistence service
      */
-    MetadataResponse upsert(String accountUrn, String entityReferenceType, String referenceUrn, MetadataUpsert metadataCreate) throws ConstraintViolationException;
+    List<MetadataResponse> upsert(String accountUrn, String entityReferenceType, String referenceUrn, List<MetadataUpsert> metadataUpsertList) throws ConstraintViolationException;
 
     /**
      * Deletes an existing metadata key that is associated to an entity (identified by its reference URN key).
