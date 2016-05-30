@@ -15,5 +15,6 @@ public class MetadataResponse {
     private final String rawValue;
     private final String referenceUrn;
     private final String urn;
+    private final String moniker;
 }
 
