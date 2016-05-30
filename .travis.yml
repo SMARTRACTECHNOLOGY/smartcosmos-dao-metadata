@@ -1,0 +1,23 @@
+sudo: false
+language: java
+install:
+- mvn -s .settings.xml install -q -U -DskipTests=true -Dmaven.test.redirectTestOutputToFile=true
+script:
+- mvn -s .settings.xml $MVN_GOAL -nsu -Dmaven.test.redirectTestOutputToFile=true
+jdk:
+- oraclejdk8
+env:
+  global:
+  - FEATURE_BRANCH=$(echo ${TRAVIS_BRANCH} | grep "^.*/.*$" && echo true || echo false)
+  - INTERNAL_BUILD=$(echo ${TRAVIS_REPO_SLUG} | grep -q "^SMARTRACTECHNOLOGY/.*$"
+    && echo true || echo false)
+  - MVN_GOAL=$([ "${TRAVIS_PULL_REQUEST}" == "false" -a "${TRAVIS_TAG}" == "" -a "${FEATURE_BRANCH}"
+    == "false" -a "${INTERNAL_BUILD}" == "true" ] && echo deploy || echo install)
+  - VERSION=$(mvn validate | grep Building | head -1 | sed -e 's/.* //')
+  - secure: dKanPHPSexHTLHnMc40FbXDJIz4FFmoMFUXDGINdOH81qApVnzJlP4ZophGC7IsFqPJ2YccTlA200KZvBlwJF4nANuE8vsYwHczT6npypImCwnoyu3TvvaMxmoy8Jg8gg1txUibpELpJ++obL9ZL7dCsRch1peY3IDEiSU/X1RJERAzhcL5ARistgH7lmp26p+GA6Ke4Wz+lC6GZqr0go7k943uPu9xjGcQ9WKmTVm1MWoDWEszxNIUu9UftwZ7jaJKaKTYTRTRt5haR7/Cg8yjaSgHAbpisiv4wSK4kDuyOdcRea/KIWLxGUWIC6a5Uzv+NPfHmhV1RGPGHYin+fNPHcVQm4Le22sKqAEn/2ZqW7Ujs114Q5fW+wFr4nH8G506cnoestfoZpca7lF8qpD5ShKubHECNtftT9o3SXtqENX1AiuNelQY9chDlmZ16s/7VDxdq9iilapZ9G3YTdlx37pdVMpfFDZBychb6yla9bKFVFEslLd0DrhOTg47WDxs56QkAbALqr4fUOwQEMMFeo5Z0EdWAFI+AiMMyPUe8nvMPkNdcO5m5busfAvQg5KRWN3xjy11DN1aea6UMsv/ED4X96NEr2DOK49ELIZT3eSOXn1evQNCpnNd+hjoNM/MMjZ/GDfJDMQcr+PC9rm2iTws24KLRSHd+hdyJmo0=
+  - secure: HNIM7EVSLRR2pS2yMPBDYPJ39eOAnbR4r9G2NbdjmY+tJXRTQELZEWWrXM3H1dxrvUltzQaotzCALOPefXPDY7LlHRj7tpYadxwbYZsTIH9OoMZ+NE7iaNruneaYj0imY5u4WUfwGehrMLAnThKg2MAwPtQsAvH30/V9WR6GEyVktLCOnMNNlMpBVlrsR/5NuYE1ERtv++jT2VLQ7pUXoHggCirXugiWFoJXyqRHBeBwGI6YkkUG+BatWVysiU+6IIE11nggQPR5/w2DS2iKMs28hGtoz/wKoyBzQwOyGX/pgW7yAFbU26cJQRGs/wDn6d9xFs9bmUihIzxJz3m3rB7c6WU/NMlKNbykwZeqauYqBePs+DJCD6Bh58GaTVkFDtNXGbWDXDu6pf+ZfDUgF1AWQ5a4lvk8UEyJSnPsebOsLUx3D9Y0X8rMnM+U8za8xEZcTDkFyoYDXNtUlVbKJLyWxDwiiNPvDvOkNMrOvh4D5EMPFHtOhHpBTWIwTlFn3v6KaXRhCDPBrPEm6kgEOo4kIOlr7fxZIAfSiUT6fPiZ3aHUI01ECOfqDZ7O+OIidDuNbqQJaO6ACf7bBuhvIXmfKOeS3kzsxHtuwsVmWOCpIW9PjPOZuCVBcgesMhQyZzptHdN7tfqz4Qo/roR5HYNIaE5CXU3+STeYkYYUqJA=
+notifications:
+  slack:
+    on_success: change
+    rooms:
+      secure: cW6GAwLc2GYMG4VgRo97Tg3gX53/P5VPmGI445ejOMad1hU+qBcqAExAeGXKytyUJjfk/Ysi0oNrVWzKANEcNRrW36vmcYiChLm0h0usHr/iyY4VQvNAs9Ux+EP3Upsh6fsgM9ppwPKv8MvXhPUbhMdZ5JWnwbi1WIPNYj7qirvCiwxxhji1x/2EWryDaNOLry6cOZ7z+gzlp71fu4UYFQ/cdQC/TgjqeDwSI9YrckitQmGM7eAqrB4tf4N6/q/RI5N5RiOUDTrX5ouzXPe9q7jIsVCTZY65auXZZoAQC0R65GFspbRtomiOlRJRA0NqbWulHJi5sjxZjb2yELgr4xhXpHyKKBjTA3jQxR15rpLDSjXEz8aEDelQQm5MEaCoF9t34Ki4gW4sqkCOyrkoGtVXGFHB6BLxtAc8p3buLVL++nRc6QFtXQSPS1ZjjD9RUfv6qj3BXmCAQpZJ4HY359v5wbY2f7lq8EqR3xUJITIliltVotOZSDFL1C/gQOnsghQE7P6IKLxnpbcywp+6VbaTRxrFVZMEtYhfovbIeLMe2/INj0+dZFArK7P0euh7h/XWNE2K5ZD5wIQ92dWibtCP0JviOvveB8Ymoq5c+6rZSCKWiA/8bHGrhh62V6kb2wmBxrDTqGZU8PPoEg3kIei7HEx+wr89jbvPpa6GdWE=
