@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MetadataCreate {
+public class MetadataUpsert {
     private String dataType;
     private String key;
     private String rawValue;
