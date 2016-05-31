@@ -14,11 +14,11 @@ public interface MetadataDao {
      * Upserts a list of metadata entities associated to a reference entity in the realm of a given account.
      *
      * @param accountUrn the account URN
-     * @param metadataUpsertList the collection containing the metadata entries to upsert
+     * @param upsertMetadataCollection the collection containing the metadata entries to upsert
      * @return an {@link MetadataResponse} list for the upserted metadata
      * @throws ConstraintViolationException if the {@link MetadataUpsert} violates constraints enforced by the persistence service
      */
-    List<MetadataResponse> upsert(String accountUrn, Collection<MetadataUpsert> metadataUpsertList) throws ConstraintViolationException;
+    List<MetadataResponse> upsert(String accountUrn, Collection<MetadataUpsert> upsertMetadataCollection) throws ConstraintViolationException;
 
     /**
      * Deletes an existing metadata key that is associated to an entity (identified by its reference URN key).
