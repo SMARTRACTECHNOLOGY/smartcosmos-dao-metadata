@@ -30,7 +30,7 @@ public interface MetadataDao {
      * @param key the key of the metadata entity
      * @return an {@link MetadataResponse} instance for the deleted metadata
      */
-    Optional<MetadataResponse> delete(String accountUrn, String entityReferenceType, String referenceUrn, String key);
+    List<MetadataResponse> delete(String accountUrn, String entityReferenceType, String referenceUrn, String key);
 
     /**
      * Finds a metadata entity for an associated entity matching a specified key in the realm of a given account.
