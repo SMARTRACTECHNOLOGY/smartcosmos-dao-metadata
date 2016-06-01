@@ -59,5 +59,5 @@ public interface MetadataDao {
      * @param queryMetadataCollection the collection of search criterias
      * @return the count of matching metadata entities
      */
-    Integer countBySearchCriterias(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
+    Long countBySearchCriterias(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
 }
