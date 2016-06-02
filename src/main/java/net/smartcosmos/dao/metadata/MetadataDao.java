@@ -50,7 +50,7 @@ public interface MetadataDao {
      * @param queryMetadataCollection the collection of search criterias
      * @return a list of matching {@link MetadataResponse} instances
      */
-    List<MetadataResponse> findBySearchCriterias(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
+    List<MetadataResponse> findBySearchCriteria(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
 
     /**
      * Counts the metadata entities of a given account that match specified search criterias.
@@ -59,5 +59,5 @@ public interface MetadataDao {
      * @param queryMetadataCollection the collection of search criterias
      * @return the count of matching metadata entities
      */
-    Long countBySearchCriterias(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
+    Long countBySearchCriteria(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
 }
