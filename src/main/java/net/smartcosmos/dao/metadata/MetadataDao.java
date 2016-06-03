@@ -1,6 +1,7 @@
 package net.smartcosmos.dao.metadata;
 
 import net.smartcosmos.dto.metadata.MetadataQuery;
+import net.smartcosmos.dto.metadata.MetadataQueryMatchResponse;
 import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataUpsert;
 
@@ -8,6 +9,7 @@ import javax.validation.ConstraintViolationException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface MetadataDao {
 
@@ -44,13 +46,13 @@ public interface MetadataDao {
     Optional<MetadataResponse> findByKey(String accountUrn, String entityReferenceType, String referenceUrn, String key);
 
     /**
-     * Finds a list of metadata entities of a given account that match specified search criterias.
+     * Finds a list of associated entities of a given account that match specified metadata search criterias.
      *
      * @param accountUrn the account URN
      * @param queryMetadataCollection the collection of search criterias
-     * @return a list of matching {@link MetadataResponse} instances
+     * @return a list of {@link MetadataQueryMatchResponse} instances of reference entities
      */
-    List<MetadataResponse> findBySearchCriteria(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
+    Set<MetadataQueryMatchResponse> findBySearchCriteria(String accountUrn, Collection<MetadataQuery> queryMetadataCollection);
 
     /**
      * Counts the metadata entities of a given account that match specified search criterias.

@@ -8,12 +8,13 @@ import org.junit.Test;
 import java.lang.reflect.Method;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 
-public class MetadataResponseTest {
+public class MetadataQueryMatchResponseTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataResponse entity = MetadataResponse.builder().build();
+        MetadataQueryMatchResponse entity = MetadataQueryMatchResponse.builder().build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());
@@ -26,7 +27,7 @@ public class MetadataResponseTest {
     public void thatVersionHasNoSetter() {
         Method getVersion = null;
         try {
-            getVersion = MetadataResponse.class.getDeclaredMethod("setVersion", int.class);
+            getVersion = MetadataQueryMatchResponse.class.getDeclaredMethod("setVersion", int.class);
         } catch (NoSuchMethodException e) {
             // that's what we expect
         }
@@ -37,12 +38,7 @@ public class MetadataResponseTest {
     public void thatObjectMapperIgnoresVersion() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
 
-        MetadataResponse response = MetadataResponse.builder()
-            .dataType("type")
-            .entityReferenceType("entityReferenceType")
-            .referenceUrn("referenceUrn")
-            .rawValue("rawValue")
-            .lastModifiedTimestamp(123L)
+        MetadataQueryMatchResponse response = MetadataQueryMatchResponse.builder()
             .urn("urn")
             .build();
 
