@@ -1,12 +1,13 @@
 package net.smartcosmos.dto.metadata;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONObject;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class MetadataResponseTest {
 
@@ -32,5 +33,24 @@ public class MetadataResponseTest {
         assertNull(getVersion);
     }
 
+    @Test
+    public void thatObjectMapperIgnoresVersion() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
 
+        MetadataResponse response = MetadataResponse.builder()
+            .dataType("type")
+            .entityReferenceType("entityReferenceType")
+            .referenceUrn("referenceUrn")
+            .rawValue("rawValue")
+            .lastModifiedTimestamp(123L)
+            .urn("urn")
+            .build();
+
+        assertNotEquals(0, response.getVersion());
+
+        String jsonString = mapper.writeValueAsString(response);
+        JSONObject jsonObject = new JSONObject(jsonString);
+
+        assertFalse(jsonObject.has("version"));
+    }
 }
