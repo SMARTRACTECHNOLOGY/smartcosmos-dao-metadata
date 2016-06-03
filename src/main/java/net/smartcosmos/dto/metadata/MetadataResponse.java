@@ -1,5 +1,6 @@
 package net.smartcosmos.dto.metadata;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import java.beans.ConstructorProperties;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties({"version"})
 public class MetadataResponse {
 
     private static final int VERSION = 1;
