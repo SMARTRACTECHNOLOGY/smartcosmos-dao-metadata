@@ -51,9 +51,10 @@ public interface MetadataDao {
      * @param accountUrn the account URN
      * @param entityReferenceType the reference type of the associated entity
      * @param queryMetadataCollection the collection of search criterias
+     * @param count the maximum count of results to return
      * @return a list of {@link MetadataQueryMatchResponse} instances of reference entities
      */
-    Set<MetadataQueryMatchResponse> findBySearchCriteria(String accountUrn, String entityReferenceType, Collection<MetadataQuery> queryMetadataCollection);
+    Set<MetadataQueryMatchResponse> findBySearchCriteria(String accountUrn, String entityReferenceType, Collection<MetadataQuery> queryMetadataCollection, Integer count);
 
     /**
      * Counts the metadata entities of a given account that match specified search criterias.
