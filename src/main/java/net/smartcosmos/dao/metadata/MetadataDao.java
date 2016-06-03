@@ -38,7 +38,7 @@ public interface MetadataDao {
      * Finds a metadata entity for an associated entity matching a specified key in the realm of a given account.
      *
      * @param accountUrn the account URN
-     * @param entityReferenceType the reference type of the associated entity
+     * @param entityReferenceType the reference type of the associated entities
      * @param referenceUrn the URN of the associated entity
      * @param key the key of the metadata entity
      * @return an {@link MetadataResponse} instance for the deleted metadata
