@@ -24,7 +24,7 @@ public class MetadataUpdate {
 
     @Builder
     @ConstructorProperties({"ownerType", "ownerId", "keyName", "value"})
-    public MetadataUpdate(String ownerType, String ownerId, String dataType, String keyName, String value) {
+    public MetadataUpdate(String ownerType, String ownerId, String keyName, String value) {
         this.ownerType = ownerType;
         this.ownerId = ownerId;
         this.keyName = keyName;
