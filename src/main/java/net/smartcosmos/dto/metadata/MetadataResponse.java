@@ -19,26 +19,25 @@ public class MetadataResponse {
     @Setter(AccessLevel.NONE)
     private int version = VERSION; // just in case there is a default constructor sometime
 
+    private final String ownerType;
+    private final String ownerId;
     private final String dataType;
-    private final String entityReferenceType;
-    private final String key;
-    private final Long lastModifiedTimestamp;
-    private final String rawValue;
-    private final String referenceUrn;
-    private final String urn;
-    private final String moniker;
+    private final String keyName;
+    private final String value;
+
+    private final String id;
 
     @Builder
-    @ConstructorProperties({"dataType", "entityReferenceType", "key", "lastModifiedTimestamp", "rawValue", "referenceUrn", "urn", "moniker"})
-    public MetadataResponse(String dataType, String entityReferenceType, String key, Long lastModifiedTimestamp, String rawValue, String referenceUrn, String urn, String moniker) {
+    @ConstructorProperties({"dataType", "ownerType", "keyName", "value", "ownerId", "urn", "moniker"})
+    public MetadataResponse(
+            String dataType, String ownerType, String ownerId, String keyName, String value, String id) {
+
         this.dataType = dataType;
-        this.entityReferenceType = entityReferenceType;
-        this.key = key;
-        this.lastModifiedTimestamp = lastModifiedTimestamp;
-        this.rawValue = rawValue;
-        this.referenceUrn = referenceUrn;
-        this.urn = urn;
-        this.moniker = moniker;
+        this.ownerType = ownerType;
+        this.keyName = keyName;
+        this.value = value;
+        this.ownerId = ownerId;
+        this.id = id;
 
         this.version = VERSION;
     }

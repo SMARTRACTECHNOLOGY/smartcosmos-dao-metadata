@@ -8,11 +8,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class MetadataUpsertTest {
+public class MetadataUpdateTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataUpsert entity = MetadataUpsert.builder().build();
+        MetadataUpdate entity = MetadataUpdate.builder().build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());
@@ -25,7 +25,7 @@ public class MetadataUpsertTest {
     public void thatVersionHasNoSetter() {
         Method getVersion = null;
         try {
-            getVersion = MetadataUpsert.class.getDeclaredMethod("setVersion", int.class);
+            getVersion = MetadataUpdate.class.getDeclaredMethod("setVersion", int.class);
         } catch (NoSuchMethodException e) {
             // that's what we expect
         }

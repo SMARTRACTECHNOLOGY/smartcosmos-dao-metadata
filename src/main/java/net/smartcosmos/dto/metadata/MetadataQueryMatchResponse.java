@@ -18,12 +18,12 @@ public class MetadataQueryMatchResponse {
     @Setter(AccessLevel.NONE)
     private int version = VERSION;
 
-    private String urn;
+    private String id;
 
     @Builder
-    @ConstructorProperties({"urn"})
-    public MetadataQueryMatchResponse(String urn) {
-        this.urn = urn;
+    @ConstructorProperties({"id"})
+    public MetadataQueryMatchResponse(String id) {
+        this.id = id;
 
         this.version = VERSION;
     }

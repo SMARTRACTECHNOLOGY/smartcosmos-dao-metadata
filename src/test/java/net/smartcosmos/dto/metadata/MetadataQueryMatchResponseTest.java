@@ -39,7 +39,7 @@ public class MetadataQueryMatchResponseTest {
         ObjectMapper mapper = new ObjectMapper();
 
         MetadataQueryMatchResponse response = MetadataQueryMatchResponse.builder()
-            .urn("urn")
+            .id("id")
             .build();
 
         assertNotEquals(0, response.getVersion());

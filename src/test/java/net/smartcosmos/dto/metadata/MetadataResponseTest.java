@@ -38,12 +38,11 @@ public class MetadataResponseTest {
         ObjectMapper mapper = new ObjectMapper();
 
         MetadataResponse response = MetadataResponse.builder()
-            .dataType("type")
-            .entityReferenceType("entityReferenceType")
-            .referenceUrn("referenceUrn")
-            .rawValue("rawValue")
-            .lastModifiedTimestamp(123L)
-            .urn("urn")
+            .dataType("dataType")
+            .ownerType("ownerType")
+            .ownerId("ownerId")
+            .value("value")
+            .id("id")
             .build();
 
         assertNotEquals(0, response.getVersion());
