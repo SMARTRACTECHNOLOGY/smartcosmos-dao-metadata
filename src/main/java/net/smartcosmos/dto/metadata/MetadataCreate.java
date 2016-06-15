@@ -1,11 +1,15 @@
 package net.smartcosmos.dto.metadata;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Setter;
 
 import java.beans.ConstructorProperties;
 
+@Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MetadataCreate {
     private static final int VERSION = 1;
 

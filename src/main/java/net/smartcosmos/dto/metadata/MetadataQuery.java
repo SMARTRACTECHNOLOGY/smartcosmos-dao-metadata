@@ -18,15 +18,13 @@ public class MetadataQuery {
     private int version = VERSION; // just in case there is a default constructor sometime
 
     private String ownerType;
-    private String dataType;
     private String keyName;
     private String value;
 
     @Builder
-    @ConstructorProperties({"ownerType", "keyName", "dataType", "value"})
+    @ConstructorProperties({"ownerType", "keyName", "value"})
     public MetadataQuery(String ownerType, String keyName, String dataType, String value) {
         this.ownerType = ownerType;
-        this.dataType = dataType;
         this.keyName = keyName;
         this.value = value;
 

@@ -56,7 +56,18 @@ public interface MetadataDao {
      * @param keyName the keyName of the metadata entity
      * @return an {@link MetadataResponse} instance for the deleted metadata
      */
-    Optional<MetadataResponse> findBykeyName(String tenantId, String ownerType, String ownerId, String keyName);
+    Optional<MetadataResponse> findByKeyName(String tenantId, String ownerType, String ownerId, String keyName);
+
+    /**
+     * Find all metadata owned by a thing in the realm of a given tenant.
+     *
+     * @param tenantId the tenant URN
+     * @param ownerType the reference type of the associated entities
+     * @param ownerId the URN of the associated entity
+     * @param keyNames return metadata with given keys, or all metadata when keyNames is Empty
+     * @return
+     */
+    Set<MetadataResponse> findByOwner(String tenantId, String ownerType, String ownerId, Collection<String>keyNames);
 
     /**
      * Finds a list of associated entities of a specified entity reference type within a given tenant that match specified metadata search criteria.
