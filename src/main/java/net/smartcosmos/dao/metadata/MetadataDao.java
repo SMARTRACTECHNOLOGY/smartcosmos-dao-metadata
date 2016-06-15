@@ -18,8 +18,8 @@ public interface MetadataDao {
      * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant.
      *
      * @param tenantId the tenant URN
-     * @param createMetadataCollection the collection containing the metadata entries to upsert
-     * @return an {@link MetadataResponse} list for the upserted metadata
+     * @param createMetadataCollection the collection containing the metadata entries to insert
+     * @return an {@link MetadataResponse} list for the inserted metadata
      * @throws ConstraintViolationException if the {@link MetadataCreate} violates constraints enforced by the persistence service
      */
     List<MetadataResponse> create(String tenantId, Collection<MetadataCreate> createMetadataCollection)
@@ -29,8 +29,8 @@ public interface MetadataDao {
      * Updates a list of metadata entities associated to a reference entity in the realm of a given tenant.
      *
      * @param tenantId the tenant URN
-     * @param updateMetadataCollection the collection containing the metadata entries to upsert
-     * @return an {@link MetadataResponse} list for the upserted metadata
+     * @param updateMetadataCollection the collection containing the metadata entries to update
+     * @return an {@link MetadataResponse} list for the updated metadata
      * @throws ConstraintViolationException if the {@link MetadataUpdate} violates constraints enforced by the persistence service
      */
     List<MetadataResponse> update(String tenantId, Collection<MetadataUpdate> updateMetadataCollection)

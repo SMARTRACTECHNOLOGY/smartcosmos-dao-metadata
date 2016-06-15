@@ -19,25 +19,26 @@ public class MetadataResponse {
     @Setter(AccessLevel.NONE)
     private int version = VERSION; // just in case there is a default constructor sometime
 
+    private final String id;
     private final String ownerType;
     private final String ownerId;
     private final String dataType;
     private final String keyName;
     private final String value;
-
-    private final String id;
+    private final String tenantId;
 
     @Builder
-    @ConstructorProperties({"dataType", "ownerType", "keyName", "value", "ownerId", "urn", "moniker"})
+    @ConstructorProperties({"id", "ownerType", "ownerId", "dataType", "keyName", "value", "tenantId"})
     public MetadataResponse(
-            String dataType, String ownerType, String ownerId, String keyName, String value, String id) {
+        String id, String ownerType, String ownerId, String dataType, String keyName, String value, String tenantId) {
 
-        this.dataType = dataType;
+        this.id = id;
         this.ownerType = ownerType;
         this.keyName = keyName;
+        this.dataType = dataType;
         this.value = value;
         this.ownerId = ownerId;
-        this.id = id;
+        this.tenantId = tenantId;
 
         this.version = VERSION;
     }
