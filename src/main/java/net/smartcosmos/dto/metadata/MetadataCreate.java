@@ -28,7 +28,9 @@ public class MetadataCreate {
         this.ownerType = ownerType;
         this.ownerId = ownerId;
         this.metadata = new HashMap<>();
-        this.metadata.putAll(metadata);
+        if (metadata != null) {
+            this.metadata.putAll(metadata);
+        }
 
         this.version = VERSION;
     }

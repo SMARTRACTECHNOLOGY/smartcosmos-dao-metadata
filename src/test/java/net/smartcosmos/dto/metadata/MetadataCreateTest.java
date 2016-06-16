@@ -19,9 +19,7 @@ public class MetadataCreateTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataCreate entity = MetadataCreate.builder()
-            .metadata(new HashMap<>())
-            .build();
+        MetadataCreate entity = MetadataCreate.builder().build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());

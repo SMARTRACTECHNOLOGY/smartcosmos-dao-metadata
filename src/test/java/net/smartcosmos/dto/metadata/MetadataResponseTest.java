@@ -19,9 +19,7 @@ public class MetadataResponseTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataResponse entity = MetadataResponse.builder()
-            .metadata(new HashMap<>())
-            .build();
+        MetadataResponse entity = MetadataResponse.builder().build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());

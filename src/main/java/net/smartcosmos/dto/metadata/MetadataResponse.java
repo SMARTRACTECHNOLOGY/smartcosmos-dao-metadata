@@ -35,7 +35,9 @@ public class MetadataResponse {
         this.id = id;
         this.ownerType = ownerType;
         this.metadata = new HashMap<>();
-        this.metadata.putAll(metadata);
+        if (metadata != null) {
+            this.metadata.putAll(metadata);
+        }
         this.ownerId = ownerId;
         this.tenantId = tenantId;
 
