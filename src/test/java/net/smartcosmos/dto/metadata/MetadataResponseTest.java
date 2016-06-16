@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import org.junit.Test;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +15,9 @@ public class MetadataResponseTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataResponse entity = MetadataResponse.builder().build();
+        MetadataResponse entity = MetadataResponse.builder()
+            .metadata(new HashMap<>())
+            .build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());
@@ -37,12 +41,15 @@ public class MetadataResponseTest {
     public void thatObjectMapperIgnoresVersion() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
 
+        Map<String, Object> metadata = new HashMap<>();
+        metadata.put("someKey", "someValue");
+
         MetadataResponse response = MetadataResponse.builder()
-            .dataType("dataType")
+            .metadata(metadata)
             .ownerType("ownerType")
             .ownerId("ownerId")
-            .value("value")
             .id("id")
+            .tenantId("tenantId")
             .build();
 
         assertNotEquals(0, response.getVersion());

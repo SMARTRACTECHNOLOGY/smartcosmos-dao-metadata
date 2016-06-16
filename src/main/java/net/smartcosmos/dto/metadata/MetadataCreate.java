@@ -7,9 +7,11 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.beans.ConstructorProperties;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
 public class MetadataCreate {
     private static final int VERSION = 1;
 
@@ -18,18 +20,15 @@ public class MetadataCreate {
 
     private String ownerType;
     private String ownerId;
-    private String dataType;
-    private String keyName;
-    private String value;
+    private Map<String, Object> metadata;
 
     @Builder
-    @ConstructorProperties({"ownerType", "ownerId", "dataType", "keyName", "value"})
-    public MetadataCreate(String ownerType, String ownerId, String dataType, String keyName, String value) {
+    @ConstructorProperties({"ownerType", "ownerId", "metadata"})
+    public MetadataCreate(String ownerType, String ownerId, Map<String, Object> metadata) {
         this.ownerType = ownerType;
         this.ownerId = ownerId;
-        this.dataType = dataType;
-        this.keyName = keyName;
-        this.value = value;
+        this.metadata = new HashMap<>();
+        this.metadata.putAll(metadata);
 
         this.version = VERSION;
     }

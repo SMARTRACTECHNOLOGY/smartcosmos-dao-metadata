@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.beans.ConstructorProperties;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -22,21 +24,18 @@ public class MetadataResponse {
     private final String id;
     private final String ownerType;
     private final String ownerId;
-    private final String dataType;
-    private final String keyName;
-    private final String value;
+    private Map<String, Object> metadata;
     private final String tenantId;
 
     @Builder
-    @ConstructorProperties({"id", "ownerType", "ownerId", "dataType", "keyName", "value", "tenantId"})
+    @ConstructorProperties({"id", "ownerType", "ownerId", "metadata", "tenantId"})
     public MetadataResponse(
-        String id, String ownerType, String ownerId, String dataType, String keyName, String value, String tenantId) {
+        String id, String ownerType, String ownerId, Map<String, Object> metadata, String tenantId) {
 
         this.id = id;
         this.ownerType = ownerType;
-        this.keyName = keyName;
-        this.dataType = dataType;
-        this.value = value;
+        this.metadata = new HashMap<>();
+        this.metadata.putAll(metadata);
         this.ownerId = ownerId;
         this.tenantId = tenantId;
 
