@@ -2,6 +2,8 @@ package net.smartcosmos.dto.metadata;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +13,7 @@ import java.beans.ConstructorProperties;
 import java.util.HashMap;
 import java.util.Map;
 
+@ApiModel("Get back \"Metadata\" from the Objects Server.")
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"version"})
@@ -21,10 +24,19 @@ public class MetadataResponse {
     @Setter(AccessLevel.NONE)
     private int version = VERSION; // just in case there is a default constructor sometime
 
+    @ApiModelProperty("The URN of the metadata entity.")
     private final String urn;
+
+    @ApiModelProperty("The TYPE of the entity the metadata is related to.")
     private final String ownerType;
+
+    @ApiModelProperty("The URN of the entity the metadata is related to.")
     private final String ownerUrn;
+
+    @ApiModelProperty("The collection of metadata to create.")
     private Map<String, Object> metadata;
+
+    @ApiModelProperty("The TENANT which the metadata belongs to.")
     private final String tenantUrn;
 
     @Builder
