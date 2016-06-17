@@ -52,6 +52,16 @@ public interface MetadataDao {
     List<MetadataResponse> delete(String tenantUrn, String ownerType, String ownerUrn, String keyName);
 
     /**
+     * Deletes all existing metadata that is associated to an entity.
+     *
+     * @param tenantUrn the tenant URN
+     * @param ownerType the reference type of the associated entity
+     * @param ownerUrn the URN of the associated entity
+     * @return a list of {@link MetadataResponse} instances for the deleted metadata entities
+     */
+    List<MetadataResponse> deleteAllByOwner(String tenantUrn, String ownerType, String ownerUrn);
+
+    /**
      * Finds a metadata entity for an associated entity matching a specified keyName in the realm of a given tenant.
      *
      * @param tenantUrn the tenant URN
