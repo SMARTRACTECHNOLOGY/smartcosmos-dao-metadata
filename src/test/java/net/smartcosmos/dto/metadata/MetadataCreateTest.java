@@ -27,7 +27,6 @@ public class MetadataCreateTest {
     @Test(expected = NoSuchMethodException.class)
     public void thatVersionHasNoSetter() throws Exception {
         MetadataCreate.class.getDeclaredMethod("setVersion", int.class);
-        assertTrue("We should not have reached this point.", false);
     }
 
     @Test
