@@ -7,9 +7,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONObject;
-import org.junit.*;
+import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class MetadataCreateTest {
 
@@ -38,8 +41,26 @@ public class MetadataCreateTest {
 
         MetadataCreate create = MetadataCreate.builder()
             .ownerType("ownerType")
-            .ownerId("ownerId")
+            .ownerUrn("ownerUrn")
             .metadata(metadata)
+            .build();
+
+        assertNotEquals(0, create.getVersion());
+
+        String jsonString = mapper.writeValueAsString(create);
+        JSONObject jsonObject = new JSONObject(jsonString);
+
+        assertFalse(jsonObject.has("version"));
+    }
+
+    @Test
+    public void thatObjectMapperAcceptsNullMetadata() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        MetadataCreate create = MetadataCreate.builder()
+            .ownerType("ownerType")
+            .ownerUrn("ownerUrn")
+            .metadata(null)
             .build();
 
         assertNotEquals(0, create.getVersion());

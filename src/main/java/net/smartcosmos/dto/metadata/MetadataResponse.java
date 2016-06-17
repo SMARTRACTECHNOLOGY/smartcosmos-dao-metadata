@@ -21,25 +21,25 @@ public class MetadataResponse {
     @Setter(AccessLevel.NONE)
     private int version = VERSION; // just in case there is a default constructor sometime
 
-    private final String id;
+    private final String urn;
     private final String ownerType;
-    private final String ownerId;
+    private final String ownerUrn;
     private Map<String, Object> metadata;
-    private final String tenantId;
+    private final String tenantUrn;
 
     @Builder
-    @ConstructorProperties({"id", "ownerType", "ownerId", "metadata", "tenantId"})
+    @ConstructorProperties({"urn", "ownerType", "ownerUrn", "metadata", "tenantUrn"})
     public MetadataResponse(
-        String id, String ownerType, String ownerId, Map<String, Object> metadata, String tenantId) {
+        String urn, String ownerType, String ownerUrn, Map<String, Object> metadata, String tenantUrn) {
 
-        this.id = id;
+        this.urn = urn;
         this.ownerType = ownerType;
         this.metadata = new HashMap<>();
         if (metadata != null) {
             this.metadata.putAll(metadata);
         }
-        this.ownerId = ownerId;
-        this.tenantId = tenantId;
+        this.ownerUrn = ownerUrn;
+        this.tenantUrn = tenantUrn;
 
         this.version = VERSION;
     }

@@ -28,15 +28,9 @@ public class MetadataResponseTest {
     /**
      * This actually tests if Lombok is properly used.
      */
-    @Test
-    public void thatVersionHasNoSetter() {
-        Method getVersion = null;
-        try {
-            getVersion = MetadataResponse.class.getDeclaredMethod("setVersion", int.class);
-        } catch (NoSuchMethodException e) {
-            // that's what we expect
-        }
-        assertNull(getVersion);
+    @Test(expected = NoSuchMethodException.class)
+    public void thatVersionHasNoSetter() throws Exception {
+        MetadataResponse.class.getDeclaredMethod("setVersion", int.class);
     }
 
     @Test
@@ -49,9 +43,29 @@ public class MetadataResponseTest {
         MetadataResponse response = MetadataResponse.builder()
             .metadata(metadata)
             .ownerType("ownerType")
-            .ownerId("ownerId")
-            .id("id")
-            .tenantId("tenantId")
+            .ownerUrn("ownerUrn")
+            .urn("urn")
+            .tenantUrn("tenantUrn")
+            .build();
+
+        assertNotEquals(0, response.getVersion());
+
+        String jsonString = mapper.writeValueAsString(response);
+        JSONObject jsonObject = new JSONObject(jsonString);
+
+        assertFalse(jsonObject.has("version"));
+    }
+
+    @Test
+    public void thatObjectMapperAcceptsNullMetadata() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        MetadataResponse response = MetadataResponse.builder()
+            .metadata(null)
+            .ownerType("ownerType")
+            .ownerUrn("ownerUrn")
+            .urn("urn")
+            .tenantUrn("tenantUrn")
             .build();
 
         assertNotEquals(0, response.getVersion());
