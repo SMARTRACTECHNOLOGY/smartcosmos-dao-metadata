@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class MetadataSingleResponseTest {
 
@@ -54,6 +55,32 @@ public class MetadataSingleResponseTest {
         JSONObject jsonObject = new JSONObject(jsonString);
 
         assertFalse(jsonObject.has("version"));
+    }
+
+    @Test
+    public void thatObjectMapperAcceptsNullValue() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        Map<String, Object> metadata = new HashMap<>();
+        metadata.put("someKey", "someValue");
+
+        MetadataSingleResponse response = MetadataSingleResponse.builder()
+            .key("key")
+            .dataType("dataType")
+            .value(null)
+            .ownerType("ownerType")
+            .ownerUrn("ownerUrn")
+            .tenantUrn("tenantUrn")
+            .build();
+
+        assertNotEquals(0, response.getVersion());
+
+        String jsonString = mapper.writeValueAsString(response);
+        JSONObject jsonObject = new JSONObject(jsonString);
+
+        assertFalse(jsonObject.has("version"));
+        assertTrue(jsonObject.has("value"));
+        assertEquals(JSONObject.NULL, jsonObject.get("value"));
     }
 
     @Test

@@ -39,6 +39,7 @@ public class MetadataSingleResponse {
     private final String dataType;
 
     @ApiModelProperty("The VALUE of the metadata entry.")
+    @JsonInclude(JsonInclude.Include.ALWAYS)
     private final Object value;
 
     @ApiModelProperty("The TENANT which the metadata belongs to.")
