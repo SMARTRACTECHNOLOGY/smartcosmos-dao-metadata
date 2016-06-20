@@ -2,6 +2,7 @@ package net.smartcosmos.dao.metadata;
 
 import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataCreate;
+import net.smartcosmos.dto.metadata.MetadataSingleResponse;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Collection;
@@ -82,4 +83,14 @@ public interface MetadataDao {
      * @return the {@link MetadataResponse} populated with values for the given keyNames
      */
     Optional<MetadataResponse> findByOwner(String tenantUrn, String ownerType, String ownerUrn, Collection<String>keyNames);
+
+    /**
+     * Return all metadata entries in the realm of a given tenant.
+     *
+     * @param tenantUrn the tenant URN
+     * @param page the number of the results page
+     * @param size the size of a results page
+     * @return the list of {@link MetadataSingleResponse} instances in the realm
+     */
+    List<MetadataSingleResponse> findAll(String tenantUrn, Long page, Integer size);
 }
