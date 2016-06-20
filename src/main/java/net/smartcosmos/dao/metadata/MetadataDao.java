@@ -28,7 +28,7 @@ public interface MetadataDao {
      * @param tenantUrn the tenant URN
      * @param ownerType the reference type of the associated entity
      * @param ownerUrn the URN of the associated entity
-     * @param keyName the keyName of the metadata entity
+     * @param key the key of the metadata entity
      * @param value the new value of the metadata entity
      * @return a {@link MetadataResponse} item containing the updated metadata
      * @throws ConstraintViolationException if value violates constraints or does not match the dataType given on create
@@ -37,20 +37,20 @@ public interface MetadataDao {
             String tenantUrn,
             String ownerType,
             String ownerUrn,
-            String keyName,
+            String key,
             Object value)
             throws ConstraintViolationException;
 
     /**
-     * Deletes an existing metadata keyName that is associated to an entity (identified by its reference URN keyName).
+     * Deletes an existing metadata key that is associated to an entity (identified by its reference URN key).
      *
      * @param tenantUrn the tenant URN
      * @param ownerType the reference type of the associated entity
      * @param ownerUrn the URN of the associated entity
-     * @param keyName the keyName of the metadata entity
+     * @param key the key of the metadata entity
      * @return a list of {@link MetadataResponse} instances for the deleted metadata entities
      */
-    List<MetadataResponse> delete(String tenantUrn, String ownerType, String ownerUrn, String keyName);
+    List<MetadataResponse> delete(String tenantUrn, String ownerType, String ownerUrn, String key);
 
     /**
      * Deletes all existing metadata that is associated to an entity.
@@ -63,15 +63,15 @@ public interface MetadataDao {
     List<MetadataResponse> deleteAllByOwner(String tenantUrn, String ownerType, String ownerUrn);
 
     /**
-     * Finds a metadata entity for an associated entity matching a specified keyName in the realm of a given tenant.
+     * Finds a metadata entity for an associated entity matching a specified key in the realm of a given tenant.
      *
      * @param tenantUrn the tenant URN
      * @param ownerType the reference type of the associated entities
      * @param ownerUrn the URN of the associated entity
-     * @param keyName the keyName of the metadata entity
+     * @param key the key of the metadata entity
      * @return the value Object assigned to the given key or Optional.empty() in case of a non-existing key
      */
-    Optional<Object> findByKeyName(String tenantUrn, String ownerType, String ownerUrn, String keyName);
+    Optional<Object> findByKey(String tenantUrn, String ownerType, String ownerUrn, String key);
 
     /**
      * Find all metadata owned by a thing in the realm of a given tenant.
@@ -79,10 +79,10 @@ public interface MetadataDao {
      * @param tenantUrn the tenant URN
      * @param ownerType the reference type of the associated entities
      * @param ownerUrn the URN of the associated entity
-     * @param keyNames return metadata with given keys, or all metadata when keyNames is Empty
-     * @return the {@link MetadataResponse} populated with values for the given keyNames
+     * @param keys return metadata with given keys, or all metadata when keys is Empty
+     * @return the {@link MetadataResponse} populated with values for the given keys
      */
-    Optional<MetadataResponse> findByOwner(String tenantUrn, String ownerType, String ownerUrn, Collection<String>keyNames);
+    Optional<MetadataResponse> findByOwner(String tenantUrn, String ownerType, String ownerUrn, Collection<String>keys);
 
     /**
      * Return all metadata entries in the realm of a given tenant.
