@@ -1,19 +1,16 @@
 package net.smartcosmos.dto.metadata;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.junit.*;
+
+import static org.junit.Assert.*;
 
 public class MetadataSingleResponseTest {
 
@@ -231,7 +228,14 @@ public class MetadataSingleResponseTest {
         final String dataType = "dataType";
         final String tenantUrn = "tenantUrn";
 
-        MetadataSingleResponse metadata = new MetadataSingleResponse(ownerType, ownerUrn, key, dataType, value, tenantUrn);
+        MetadataSingleResponse metadata = MetadataSingleResponse.builder()
+            .ownerType(ownerType)
+            .ownerUrn(ownerUrn)
+            .key(key)
+            .dataType(dataType)
+            .value(value)
+            .tenantUrn(tenantUrn)
+            .build();
         assertNotNull(metadata);
 
         assertEquals(ownerUrn, metadata.getOwnerUrn());
