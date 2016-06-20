@@ -24,27 +24,23 @@ public class MetadataResponse {
     @Setter(AccessLevel.NONE)
     private int version = VERSION; // just in case there is a default constructor sometime
 
-    @ApiModelProperty("The URN of the metadata entity.")
-    private final String urn;
-
     @ApiModelProperty("The TYPE of the entity the metadata is related to.")
     private final String ownerType;
 
     @ApiModelProperty("The URN of the entity the metadata is related to.")
     private final String ownerUrn;
 
-    @ApiModelProperty("The collection of metadata to create.")
+    @ApiModelProperty("The collection of metadata entries.")
     private Map<String, Object> metadata;
 
     @ApiModelProperty("The TENANT which the metadata belongs to.")
     private final String tenantUrn;
 
     @Builder
-    @ConstructorProperties({"urn", "ownerType", "ownerUrn", "metadata", "tenantUrn"})
+    @ConstructorProperties({"ownerType", "ownerUrn", "metadata", "tenantUrn"})
     public MetadataResponse(
-        String urn, String ownerType, String ownerUrn, Map<String, Object> metadata, String tenantUrn) {
+        String ownerType, String ownerUrn, Map<String, Object> metadata, String tenantUrn) {
 
-        this.urn = urn;
         this.ownerType = ownerType;
         this.metadata = new HashMap<>();
         if (metadata != null) {

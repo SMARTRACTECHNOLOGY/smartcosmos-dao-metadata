@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 import org.junit.Test;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,7 +12,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 public class MetadataResponseTest {
 
@@ -44,7 +42,6 @@ public class MetadataResponseTest {
             .metadata(metadata)
             .ownerType("ownerType")
             .ownerUrn("ownerUrn")
-            .urn("urn")
             .tenantUrn("tenantUrn")
             .build();
 
@@ -64,7 +61,6 @@ public class MetadataResponseTest {
             .metadata(null)
             .ownerType("ownerType")
             .ownerUrn("ownerUrn")
-            .urn("urn")
             .tenantUrn("tenantUrn")
             .build();
 
