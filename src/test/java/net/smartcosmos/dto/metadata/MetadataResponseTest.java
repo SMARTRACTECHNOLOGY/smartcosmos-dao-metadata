@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class MetadataResponseTest {
 
@@ -70,5 +71,7 @@ public class MetadataResponseTest {
         JSONObject jsonObject = new JSONObject(jsonString);
 
         assertFalse(jsonObject.has("version"));
+        assertTrue(jsonObject.has("metadata"));
+        assertNotNull(jsonObject.get("metadata"));
     }
 }
