@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.beans.ConstructorProperties;
 
 @Data
+@Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MetadataQuery {
 

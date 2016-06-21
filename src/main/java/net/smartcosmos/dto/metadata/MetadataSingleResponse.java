@@ -14,6 +14,7 @@ import lombok.Setter;
  * Other requests usually should work with {@link MetadataResponse} and extract the desired portion.
  */
 @Data
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"version"})
 public class MetadataSingleResponse {

@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.Setter;
 
 @Data
+@Builder
 @JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
 public class MetadataCreate {
     private static final int VERSION = 1;

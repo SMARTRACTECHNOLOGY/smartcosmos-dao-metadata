@@ -10,8 +10,8 @@ import java.beans.ConstructorProperties;
 import java.util.HashMap;
 import java.util.Map;
 
-@Builder
 @Data
+@Builder
 @JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
 public class MetadataUpdate
 {
