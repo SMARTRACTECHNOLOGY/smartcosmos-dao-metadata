@@ -13,10 +13,10 @@ import lombok.Setter;
 @Data
 @JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
 public class MetadataCreate {
-    private static final int VERSION = 1;
+    private static final int VERSION_1 = 1;
 
     @Setter(AccessLevel.NONE)
-    private int version = VERSION; // just in case there is a default constructor sometime
+    private int version = VERSION_1; // just in case there is a default constructor sometime
 
     private String ownerType;
 
@@ -34,6 +34,6 @@ public class MetadataCreate {
             this.metadata.putAll(metadata);
         }
 
-        this.version = VERSION;
+        this.version = VERSION_1;
     }
 }
