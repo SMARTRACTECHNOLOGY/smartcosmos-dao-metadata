@@ -7,19 +7,24 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.beans.ConstructorProperties;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 @Builder
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class MetadataQuery {
-
+@JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
+public class MetadataUpdate
+{
     private static final int VERSION = 1;
 
     private final int version = VERSION; // just in case there is a default constructor sometime
 
-    private String entityReferenceType;
+    private String ownerType;
+
+    private String ownerUrn;
+
     private String key;
-    private String dataType;
-    private String rawValue;
+
+    private String value;
 
 }

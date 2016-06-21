@@ -14,14 +14,14 @@ import lombok.Setter;
  * Other requests usually should work with {@link MetadataResponse} and extract the desired portion.
  */
 @Data
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"version"})
 public class MetadataSingleResponse {
 
     private static final int VERSION = 1;
 
-    @Setter(AccessLevel.NONE)
-    private int version = VERSION;
+    private final int version = VERSION;
 
     private final String ownerType;
 
@@ -36,18 +36,4 @@ public class MetadataSingleResponse {
 
     private final String tenantUrn;
 
-    @Builder
-    @ConstructorProperties({"ownerType", "ownerUrn", "key", "dataType", "value", "tenantUrn"})
-    private MetadataSingleResponse(
-        String ownerType, String ownerUrn, String key, String dataType, Object value, String tenantUrn) {
-
-        this.ownerType = ownerType;
-        this.ownerUrn = ownerUrn;
-        this.key = key;
-        this.dataType = dataType;
-        this.value = value;
-        this.tenantUrn = tenantUrn;
-
-        this.version = VERSION;
-    }
 }
