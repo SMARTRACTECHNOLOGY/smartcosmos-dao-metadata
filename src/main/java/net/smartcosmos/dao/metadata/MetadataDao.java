@@ -23,6 +23,18 @@ public interface MetadataDao {
             throws ConstraintViolationException;
 
     /**
+     * Upserts a list of metadata entities associated to a reference entity in the realm of a given tenant,
+     * overwriting already existing keys with those from upsertMetadata
+     *
+     * @param tenantUrn the tenant URN
+     * @param upsertMetadata the collection containing the metadata entries to insert
+     * @return a {@link MetadataResponse} item containing the inserted metadata
+     * @throws ConstraintViolationException if the {@link MetadataCreate} violates constraints enforced by the persistence service
+     */
+    Optional<MetadataResponse> upsert(String tenantUrn, MetadataCreate upsertMetadata)
+            throws ConstraintViolationException;
+
+    /**
      * Updates a metadata key associated to a reference entity with a new value in the realm of a given tenant.
      *
      * @param tenantUrn the tenant URN
