@@ -16,10 +16,10 @@ import lombok.Setter;
 @JsonIgnoreProperties({"version"})
 public class MetadataResponse {
 
-    private static final int VERSION_1 = 1;
+    private static final int VERSION = 1;
 
     @Setter(AccessLevel.NONE)
-    private int version = VERSION_1; // just in case there is a default constructor sometime
+    private int version = VERSION; // just in case there is a default constructor sometime
 
     private final String ownerType;
 
@@ -42,7 +42,7 @@ public class MetadataResponse {
         this.ownerUrn = ownerUrn;
         this.tenantUrn = tenantUrn;
 
-        this.version = VERSION_1;
+        this.version = VERSION;
     }
 }
 
