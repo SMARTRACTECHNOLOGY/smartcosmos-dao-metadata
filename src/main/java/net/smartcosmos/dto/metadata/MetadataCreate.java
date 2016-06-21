@@ -5,44 +5,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Setter;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties({"version"})
-public class MetadataResponse {
-
+@JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
+public class MetadataCreate {
     private static final int VERSION = 1;
 
     @Setter(AccessLevel.NONE)
     private int version = VERSION; // just in case there is a default constructor sometime
 
-    private final String ownerType;
+    private String ownerType;
 
-    private final String ownerUrn;
+    private String ownerUrn;
 
     private Map<String, Object> metadata;
 
-    private final String tenantUrn;
-
     @Builder
-    @ConstructorProperties({"ownerType", "ownerUrn", "metadata", "tenantUrn"})
-    private MetadataResponse(
-        String ownerType, String ownerUrn, Map<String, Object> metadata, String tenantUrn) {
-
+    @ConstructorProperties({"ownerType", "ownerUrn", "metadata"})
+    private MetadataCreate(String ownerType, String ownerUrn, Map<String, Object> metadata) {
         this.ownerType = ownerType;
+        this.ownerUrn = ownerUrn;
         this.metadata = new HashMap<>();
         if (metadata != null) {
             this.metadata.putAll(metadata);
         }
-        this.ownerUrn = ownerUrn;
-        this.tenantUrn = tenantUrn;
 
         this.version = VERSION;
     }
 }
-

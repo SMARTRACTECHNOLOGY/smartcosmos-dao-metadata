@@ -14,11 +14,11 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-public class MetadataResponseTest {
+public class MetadataCreateTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataResponse entity = MetadataResponse.builder().build();
+        MetadataCreate entity = MetadataCreate.builder().build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());
@@ -29,7 +29,7 @@ public class MetadataResponseTest {
      */
     @Test(expected = NoSuchMethodException.class)
     public void thatVersionHasNoSetter() throws Exception {
-        MetadataResponse.class.getDeclaredMethod("setVersion", int.class);
+        MetadataCreate.class.getDeclaredMethod("setVersion", int.class);
     }
 
     @Test
@@ -39,16 +39,15 @@ public class MetadataResponseTest {
         Map<String, Object> metadata = new HashMap<>();
         metadata.put("someKey", "someValue");
 
-        MetadataResponse response = MetadataResponse.builder()
-            .metadata(metadata)
+        MetadataCreate create = MetadataCreate.builder()
             .ownerType("ownerType")
             .ownerUrn("ownerUrn")
-            .tenantUrn("tenantUrn")
+            .metadata(metadata)
             .build();
 
-        assertNotEquals(0, response.getVersion());
+        assertNotEquals(0, create.getVersion());
 
-        String jsonString = mapper.writeValueAsString(response);
+        String jsonString = mapper.writeValueAsString(create);
         JSONObject jsonObject = new JSONObject(jsonString);
 
         assertFalse(jsonObject.has("version"));
@@ -58,20 +57,20 @@ public class MetadataResponseTest {
     public void thatObjectMapperAcceptsNullMetadata() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
 
-        MetadataResponse response = MetadataResponse.builder()
-            .metadata(null)
+        MetadataCreate create = MetadataCreate.builder()
             .ownerType("ownerType")
             .ownerUrn("ownerUrn")
-            .tenantUrn("tenantUrn")
+            .metadata(null)
             .build();
 
-        assertNotEquals(0, response.getVersion());
+        assertNotEquals(0, create.getVersion());
 
-        String jsonString = mapper.writeValueAsString(response);
+        String jsonString = mapper.writeValueAsString(create);
         JSONObject jsonObject = new JSONObject(jsonString);
 
         assertFalse(jsonObject.has("version"));
         assertTrue(jsonObject.has("metadata"));
         assertNotNull(jsonObject.get("metadata"));
     }
+
 }
