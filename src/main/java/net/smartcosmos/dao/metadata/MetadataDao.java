@@ -12,7 +12,8 @@ import java.util.Optional;
 public interface MetadataDao {
 
     /**
-     * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant.
+     * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant, and
+     * returns an Optional.empty() if any of the metadata keys already exist.
      *
      * @param tenantUrn the tenant URN
      * @param createMetadata the collection containing the metadata entries to insert
@@ -20,7 +21,19 @@ public interface MetadataDao {
      * @throws ConstraintViolationException if the {@link MetadataCreate} violates constraints enforced by the persistence service
      */
     Optional<MetadataResponse> create(String tenantUrn, MetadataCreate createMetadata)
-            throws ConstraintViolationException;
+        throws ConstraintViolationException;
+
+    /**
+     * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant, and does
+     * merges if keys already exist.
+     *
+     * @param tenantUrn the tenant URN
+     * @param createMetadata the collection containing the metadata entries to insert
+     * @return a {@link MetadataResponse} item containing the inserted metadata
+     * @throws ConstraintViolationException if the {@link MetadataCreate} violates constraints enforced by the persistence service
+     */
+    Optional<MetadataResponse> upsert(String tenantUrn, MetadataCreate createMetadata)
+        throws ConstraintViolationException;
 
     /**
      * Updates a metadata key associated to a reference entity with a new value in the realm of a given tenant.
