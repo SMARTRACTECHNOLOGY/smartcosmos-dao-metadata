@@ -19,8 +19,7 @@ public class MetadataResponse {
 
     private static final int VERSION = 1;
 
-    @Setter(AccessLevel.NONE)
-    private int version = VERSION; // just in case there is a default constructor sometime
+    private final int version = VERSION; // just in case there is a default constructor sometime
 
     private final String ownerType;
 
