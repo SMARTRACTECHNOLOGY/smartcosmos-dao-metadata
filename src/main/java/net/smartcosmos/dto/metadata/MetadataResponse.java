@@ -12,6 +12,7 @@ import lombok.Data;
 import lombok.Setter;
 
 @Data
+@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties({"version"})
 public class MetadataResponse {
@@ -29,20 +30,5 @@ public class MetadataResponse {
 
     private final String tenantUrn;
 
-    @Builder
-    @ConstructorProperties({"ownerType", "ownerUrn", "metadata", "tenantUrn"})
-    private MetadataResponse(
-        String ownerType, String ownerUrn, Map<String, Object> metadata, String tenantUrn) {
-
-        this.ownerType = ownerType;
-        this.metadata = new HashMap<>();
-        if (metadata != null) {
-            this.metadata.putAll(metadata);
-        }
-        this.ownerUrn = ownerUrn;
-        this.tenantUrn = tenantUrn;
-
-        this.version = VERSION;
-    }
 }
 
