@@ -1,12 +1,12 @@
 package net.smartcosmos.dao.metadata;
 
 import net.smartcosmos.dto.metadata.MetadataResponse;
-import net.smartcosmos.dto.metadata.MetadataCreate;
 import net.smartcosmos.dto.metadata.MetadataSingleResponse;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface MetadataDao {
@@ -16,11 +16,17 @@ public interface MetadataDao {
      * returns an Optional.empty() if any of the metadata keys already exist.
      *
      * @param tenantUrn the tenant URN
-     * @param createMetadata the collection containing the metadata entries to insert
+     * @param ownerType the reference type of the associated entity
+     * @param ownerUrn the URN of the associated entity
+     * @param metadataMap the collection containing the metadata entries to insert
      * @return a {@link MetadataResponse} item containing the inserted metadata
-     * @throws ConstraintViolationException if the {@link MetadataCreate} violates constraints enforced by the persistence service
+     * @throws ConstraintViolationException if any of the metadata map entries violates constraints enforced by the persistence service
      */
-    Optional<MetadataResponse> create(String tenantUrn, MetadataCreate createMetadata)
+    Optional<MetadataResponse> create(
+        String tenantUrn,
+        String ownerType,
+        String ownerUrn,
+        Map<String, Object> metadataMap)
         throws ConstraintViolationException;
 
     /**
@@ -28,11 +34,17 @@ public interface MetadataDao {
      * merges if keys already exist.
      *
      * @param tenantUrn the tenant URN
-     * @param createMetadata the collection containing the metadata entries to insert
+     * @param ownerType the reference type of the associated entity
+     * @param ownerUrn the URN of the associated entity
+     * @param metadataMap the collection containing the metadata entries to insert
      * @return a {@link MetadataResponse} item containing the inserted metadata
-     * @throws ConstraintViolationException if the {@link MetadataCreate} violates constraints enforced by the persistence service
+     * @throws ConstraintViolationException if any of the metadata map entries violates constraints enforced by the persistence service
      */
-    Optional<MetadataResponse> upsert(String tenantUrn, MetadataCreate createMetadata)
+    Optional<MetadataResponse> upsert(
+        String tenantUrn,
+        String ownerType,
+        String ownerUrn,
+        Map<String, Object> metadataMap)
         throws ConstraintViolationException;
 
     /**
