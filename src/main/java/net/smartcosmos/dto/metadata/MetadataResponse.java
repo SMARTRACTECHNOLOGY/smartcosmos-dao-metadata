@@ -1,12 +1,13 @@
 package net.smartcosmos.dto.metadata;
 
+import java.util.Map;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Data
 @JsonIgnoreProperties({"version"})

@@ -13,9 +13,9 @@ public class MetadataQuery {
 
     private final int version = VERSION;
 
-    private String entityReferenceType;
+    private String ownerType;
     private String key;
     private String dataType;
-    private String rawValue;
+    private Object value;
 
 }
