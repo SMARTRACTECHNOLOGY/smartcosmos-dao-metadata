@@ -1,14 +1,8 @@
 package net.smartcosmos.dto.metadata;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Setter;
-
-import java.beans.ConstructorProperties;
-import java.util.HashMap;
-import java.util.Map;
 
 @Data
 @Builder
@@ -25,6 +19,5 @@ public class MetadataUpdate
 
     private String key;
 
-    private String value;
-
+    private Object value;
 }

@@ -1,12 +1,8 @@
 package net.smartcosmos.dto.metadata;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Setter;
-
-import java.beans.ConstructorProperties;
 
 @Data
 @Builder
@@ -17,9 +13,9 @@ public class MetadataQuery {
 
     private final int version = VERSION; // just in case there is a default constructor sometime
 
-    private String entityReferenceType;
+    private String ownerType;
     private String key;
     private String dataType;
-    private String rawValue;
+    private Object value;
 
 }
