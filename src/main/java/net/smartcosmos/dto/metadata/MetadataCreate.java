@@ -1,22 +1,18 @@
 package net.smartcosmos.dto.metadata;
 
-import java.beans.ConstructorProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
+import lombok.Data;
+
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Setter;
-
 @Data
-@Builder
 @JsonIgnoreProperties(value = {"version"}, ignoreUnknown = true)
 public class MetadataCreate {
     private static final int VERSION = 1;
 
-    private final int version = VERSION; // just in case there is a default constructor sometime
+    private final int version = VERSION;
 
     private String ownerType;
 
@@ -24,4 +20,15 @@ public class MetadataCreate {
 
     private Map<String, Object> metadata;
 
+    @Builder
+    @java.beans.ConstructorProperties({"ownerType", "ownerUrn", "metadata"})
+    public MetadataCreate(String ownerType, String ownerUrn, Map<String, Object> metadata) {
+        this.ownerType = ownerType;
+        this.ownerUrn = ownerUrn;
+
+        this.metadata = new HashMap<>();
+        if (metadata != null) {
+            this.metadata.putAll(metadata);
+        }
+    }
 }
