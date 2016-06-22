@@ -1,13 +1,9 @@
 package net.smartcosmos.dto.metadata;
 
-import java.beans.ConstructorProperties;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Setter;
 
 /**
  * This response model is particularly intended to be used for Query Requests, i.e. with paging.
