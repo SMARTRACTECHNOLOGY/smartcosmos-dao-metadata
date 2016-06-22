@@ -3,6 +3,7 @@ package net.smartcosmos.dao.metadata;
 import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataCreate;
 import net.smartcosmos.dto.metadata.MetadataSingleResponse;
+import net.smartcosmos.dto.metadata.MetadataUpdate;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Collection;
@@ -39,19 +40,13 @@ public interface MetadataDao {
      * Updates a metadata key associated to a reference entity with a new value in the realm of a given tenant.
      *
      * @param tenantUrn the tenant URN
-     * @param ownerType the reference type of the associated entity
-     * @param ownerUrn the URN of the associated entity
-     * @param key the key of the metadata entity
-     * @param value the new value of the metadata entity
+     * @param metadataUpdate metadata to be updated
      * @return a {@link MetadataResponse} item containing the updated metadata
      * @throws ConstraintViolationException if value violates constraints or does not match the dataType given on create
      */
     Optional<MetadataResponse> update(
             String tenantUrn,
-            String ownerType,
-            String ownerUrn,
-            String key,
-            Object value)
+            MetadataUpdate metadataUpdate)
             throws ConstraintViolationException;
 
     /**
