@@ -73,4 +73,14 @@ public class MetadataCreateTest {
         assertNotNull(jsonObject.get("metadata"));
     }
 
+    @Test
+    public void thatBuilderAcceptsNullMetadata() {
+        MetadataCreate response = MetadataCreate.builder()
+            .metadata(null)
+            .build();
+
+        assertNotNull(response);
+        assertNotNull(response.getMetadata());
+        assertTrue(response.getMetadata().isEmpty());
+    }
 }

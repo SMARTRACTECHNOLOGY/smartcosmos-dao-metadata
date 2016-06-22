@@ -31,5 +31,4 @@ public class MetadataSingleResponse {
     private final Object value;
 
     private final String tenantUrn;
-
 }

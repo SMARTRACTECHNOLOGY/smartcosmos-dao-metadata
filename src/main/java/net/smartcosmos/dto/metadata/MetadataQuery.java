@@ -11,7 +11,7 @@ public class MetadataQuery {
 
     private static final int VERSION = 1;
 
-    private final int version = VERSION; // just in case there is a default constructor sometime
+    private final int version = VERSION;
 
     private String ownerType;
     private String key;
