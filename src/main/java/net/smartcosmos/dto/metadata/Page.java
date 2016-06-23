@@ -64,7 +64,7 @@ public class Page<T> {
         }
 
         public String toString() {
-            return "net.smartcosmos.dto.things.Page.PageBuilder(data=" + this.data + ", page=" + this.page + ")";
+            return this.getClass() + "(data=" + this.data + ", page=" + this.page + ")";
         }
     }
 }
