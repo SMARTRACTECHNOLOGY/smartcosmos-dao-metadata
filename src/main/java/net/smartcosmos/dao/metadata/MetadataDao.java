@@ -2,6 +2,7 @@ package net.smartcosmos.dao.metadata;
 
 import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataSingleResponse;
+import net.smartcosmos.dto.metadata.Page;
 
 import javax.validation.ConstraintViolationException;
 import java.util.Collection;
@@ -117,5 +118,5 @@ public interface MetadataDao {
      * @param size the size of a results page
      * @return the list of {@link MetadataSingleResponse} instances in the realm
      */
-    List<MetadataSingleResponse> findAll(String tenantUrn, Long page, Integer size);
+    Page<MetadataSingleResponse> findAll(String tenantUrn, Integer page, Integer size);
 }
