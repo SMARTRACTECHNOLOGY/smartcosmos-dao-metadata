@@ -132,22 +132,7 @@ public interface MetadataDao {
      * @return the paged list of {@link MetadataSingleResponse} instances in the realm
      */
     Page<MetadataSingleResponse> findAll(String tenantUrn, Integer page, Integer size, SortOrder sortOrder, String sortBy);
-
-    /**
-     * Finds all owner entities that are associated with given set of metadata entries in the realm of a given tenant (paged).
-     *
-     * @param tenantUrn the tenant URN
-     * @param keyValuePairs the map of metadata key-value pairs
-     * @param page the number of the results page
-     * @param size the maximum size of a results page
-     * @return the paged list of {@link MetadataOwnerResponse} instances in the realm
-     */
-    Page<MetadataOwnerResponse> findOwnersByKeyValuePairs(
-        String tenantUrn,
-        Map<String, Object> keyValuePairs,
-        Integer page,
-        Integer size);
-
+    
     /**
      * Finds all owner entities that are associated with given set of metadata entries in the realm of a given tenant (paged and sorted).
      *
