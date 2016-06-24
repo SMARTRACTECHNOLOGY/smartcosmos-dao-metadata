@@ -30,11 +30,10 @@ public enum SortOrder {
      * @return the corresponding sort order or {@code ASC} if {@code sortOrderString} is invalid.
      */
     public static SortOrder fromString(String sortOrderString) {
-        String lcString = "";
-        if (sortOrderString != null) {
-            lcString = sortOrderString.toLowerCase();
+        try {
+            return valueOf(SortOrder.class, sortOrderString.toUpperCase());
+        } catch (Exception e) {
+            return ASC;
         }
-
-        return (DESC.toString().equals(lcString) ? DESC : ASC);
     }
 }
