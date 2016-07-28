@@ -1,17 +1,22 @@
 package net.smartcosmos.dao.metadata;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import javax.validation.ConstraintViolationException;
+
 import net.smartcosmos.dto.metadata.MetadataOwnerResponse;
 import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataSingleResponse;
 import net.smartcosmos.dto.metadata.Page;
 
-import javax.validation.ConstraintViolationException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 public interface MetadataDao {
+
+    public static final Integer DEFAULT_PAGE = 1;
+    public static final Integer DEFAULT_SIZE = 20;
+    public static final SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
+    public static final String DEFAULT_SORT_BY = "created";
 
     /**
      * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant, and
@@ -132,7 +137,7 @@ public interface MetadataDao {
      * @return the paged list of {@link MetadataSingleResponse} instances in the realm
      */
     Page<MetadataSingleResponse> findAll(String tenantUrn, Integer page, Integer size, SortOrder sortOrder, String sortBy);
-    
+
     /**
      * Finds all owner entities that are associated with given set of metadata entries in the realm of a given tenant (paged and sorted).
      *
