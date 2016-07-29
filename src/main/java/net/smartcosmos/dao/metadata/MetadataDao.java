@@ -14,6 +14,11 @@ import net.smartcosmos.dto.metadata.Page;
 
 public interface MetadataDao {
 
+    Integer DEFAULT_PAGE = 1;
+    Integer DEFAULT_SIZE = 20;
+    SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
+    String DEFAULT_SORT_BY = "created";
+
     /**
      * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant, and
      * returns an Optional.empty() if any of the metadata keys already exist.
