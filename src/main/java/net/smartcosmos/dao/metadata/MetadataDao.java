@@ -13,11 +13,6 @@ import net.smartcosmos.dto.metadata.Page;
 
 public interface MetadataDao {
 
-    public static final Integer DEFAULT_PAGE = 1;
-    public static final Integer DEFAULT_SIZE = 20;
-    public static final SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
-    public static final String DEFAULT_SORT_BY = "created";
-
     /**
      * Inserts a list of metadata entities associated to a reference entity in the realm of a given tenant, and
      * returns an Optional.empty() if any of the metadata keys already exist.
@@ -117,31 +112,35 @@ public interface MetadataDao {
     Optional<MetadataResponse> findByOwner(String tenantUrn, String ownerType, String ownerUrn, Collection<String>keys);
 
     /**
-     * Return all metadata entries in the realm of a given tenant (paged).
+     * Return all metadata entries associated to owners of a given type in the realm of a given tenant (paged).
      *
      * @param tenantUrn the tenant URN
+     * @param ownerType the type of the Metadata owner
      * @param page the number of the results page
      * @param size the maximum size of a results page
      * @return the paged list of {@link MetadataSingleResponse} instances in the realm
      */
-    Page<MetadataSingleResponse> findAll(String tenantUrn, Integer page, Integer size);
+    Page<MetadataSingleResponse> findByOwnerType(String tenantUrn, String ownerType, Integer page, Integer size);
 
     /**
-     * Return all metadata entries in the realm of a given tenant (paged and sorted).
+     * Return all metadata entries associated to owners of a given type in the realm of a given tenant (paged and sorted).
      *
      * @param tenantUrn the tenant URN
+     * @param ownerType the type of the Metadata owner
      * @param page the number of the results page
      * @param size the maximum size of a results page
      * @param sortOrder order to sort the result, can be {@code ASC} or {@code DESC}
      * @param sortBy name of the field to sort by
      * @return the paged list of {@link MetadataSingleResponse} instances in the realm
      */
-    Page<MetadataSingleResponse> findAll(String tenantUrn, Integer page, Integer size, SortOrder sortOrder, String sortBy);
+    Page<MetadataSingleResponse> findByOwnerType(String tenantUrn, String ownerType, Integer page, Integer size, SortOrder sortOrder, String sortBy);
 
     /**
-     * Finds all owner entities that are associated with given set of metadata entries in the realm of a given tenant (paged and sorted).
+     * Finds all owner entities of a given type that are associated with a given set of metadata entries in the realm of a given tenant (paged and
+     * sorted).
      *
      * @param tenantUrn the tenant URN
+     * @param ownerType the type of the Metadata owner
      * @param keyValuePairs the map of metadata key-value pairs
      * @param page the number of the results page
      * @param size the maximum size of a results page
@@ -149,8 +148,9 @@ public interface MetadataDao {
      * @param sortBy name of the field to sort by
      * @return the paged list of {@link MetadataOwnerResponse} instances in the realm
      */
-    Page<MetadataOwnerResponse> findOwnersByKeyValuePairs(
+    Page<MetadataOwnerResponse> findOwnersByTypeAndKeyValuePairs(
         String tenantUrn,
+        String ownerType,
         Map<String, Object> keyValuePairs,
         Integer page,
         Integer size,
