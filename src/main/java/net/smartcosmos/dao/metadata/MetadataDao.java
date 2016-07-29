@@ -9,6 +9,7 @@ import javax.validation.ConstraintViolationException;
 import net.smartcosmos.dto.metadata.MetadataOwnerResponse;
 import net.smartcosmos.dto.metadata.MetadataResponse;
 import net.smartcosmos.dto.metadata.MetadataSingleResponse;
+import net.smartcosmos.dto.metadata.MetadataValueResponse;
 import net.smartcosmos.dto.metadata.Page;
 
 public interface MetadataDao {
@@ -98,7 +99,7 @@ public interface MetadataDao {
      * @param key the key of the metadata entity
      * @return the value Object assigned to the given key or Optional.empty() in case of a non-existing key
      */
-    Optional<Object> findByKey(String tenantUrn, String ownerType, String ownerUrn, String key);
+    Optional<MetadataValueResponse> findByKey(String tenantUrn, String ownerType, String ownerUrn, String key);
 
     /**
      * Find all metadata owned by a thing in the realm of a given tenant.
