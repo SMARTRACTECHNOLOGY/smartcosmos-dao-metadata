@@ -162,4 +162,24 @@ public interface MetadataDao {
         Integer size,
         SortOrder sortOrder,
         String sortBy);
+
+    /**
+     * Finds all owner entities of a given type that are associated with a given set of metadata entries, regardless of tenant (paged and
+     * sorted).
+     *
+     * @param ownerType the type of the Metadata owner
+     * @param keyValuePairs the map of metadata key-value pairs
+     * @param page the number of the results page
+     * @param size the maximum size of a results page
+     * @param sortOrder order to sort the result, can be {@code ASC} or {@code DESC}
+     * @param sortBy name of the field to sort by
+     * @return the paged list of {@link MetadataOwnerResponse} instances in the realm
+     */
+    Page<MetadataOwnerResponse> findOwnersByTypeAndKeyValuePairsNoTenant(
+        String ownerType,
+        Map<String, Object> keyValuePairs,
+        Integer page,
+        Integer size,
+        SortOrder sortOrder,
+        String sortBy);
 }
