@@ -1,19 +1,17 @@
 package net.smartcosmos.dto.metadata;
 
-import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.*;
+
+import static org.junit.Assert.*;
 
 public class PageTest {
 
     @Test
     public void thatBuilderEmptyWorks() {
+
         Page<MetadataResponse> page = Page.<MetadataResponse>builder()
             .build();
         assertNotNull(page);
@@ -21,6 +19,7 @@ public class PageTest {
 
     @Test
     public void thatBuilderEmptyDataWorks() {
+
         List<MetadataResponse> data = new ArrayList<>();
 
         Page<MetadataResponse> page = Page.<MetadataResponse>builder()
@@ -32,20 +31,26 @@ public class PageTest {
 
     @Test
     public void thatBuilderNullDataWorks() {
+
         List<MetadataResponse> data = new ArrayList<>();
-        data.add(MetadataResponse.builder().build());
+        data.add(MetadataResponse.builder()
+                     .build());
 
         Page<MetadataResponse> page = Page.<MetadataResponse>builder()
             .data(data)
             .build();
         assertNotNull(page);
         assertNotNull(page.getData());
-        assertFalse(page.getData().isEmpty());
-        assertEquals(1, page.getData().size());
+        assertFalse(page.getData()
+                        .isEmpty());
+        assertEquals(1,
+                     page.getData()
+                         .size());
     }
 
     @Test
     public void thatBuilderDataWorks() {
+
         List<MetadataResponse> data = null;
 
         Page<MetadataResponse> page = Page.<MetadataResponse>builder()
@@ -53,11 +58,13 @@ public class PageTest {
             .build();
         assertNotNull(page);
         assertNotNull(page.getData());
-        assertTrue(page.getData().isEmpty());
+        assertTrue(page.getData()
+                       .isEmpty());
     }
 
     @Test
     public void thatBuilderDataWorksWithoutType() {
+
         List data = new ArrayList();
 
         Page page = Page.builder()
@@ -66,12 +73,15 @@ public class PageTest {
 
         assertNotNull(page);
         assertNotNull(page.getData());
-        assertTrue(page.getData().isEmpty());
+        assertTrue(page.getData()
+                       .isEmpty());
     }
 
     @Test
     public void thatBuilderPageWorks() {
-        PageInformation pageInfo = PageInformation.builder().build();
+
+        PageInformation pageInfo = PageInformation.builder()
+            .build();
 
         Page<MetadataResponse> page = Page.<MetadataResponse>builder()
             .page(pageInfo)

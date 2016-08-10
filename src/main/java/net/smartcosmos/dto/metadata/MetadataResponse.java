@@ -1,5 +1,6 @@
 package net.smartcosmos.dto.metadata;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -7,10 +8,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.HashMap;
-
 @Data
-@JsonIgnoreProperties({"version"})
+@JsonIgnoreProperties({ "version" })
 public class MetadataResponse {
 
     private static final int VERSION = 1;
@@ -27,8 +26,9 @@ public class MetadataResponse {
     private final String tenantUrn;
 
     @Builder
-    @java.beans.ConstructorProperties({"ownerType", "ownerUrn", "metadata", "tenantUrn"})
+    @java.beans.ConstructorProperties({ "ownerType", "ownerUrn", "metadata", "tenantUrn" })
     public MetadataResponse(String ownerType, String ownerUrn, Map<String, Object> metadata, String tenantUrn) {
+
         this.ownerType = ownerType;
         this.ownerUrn = ownerUrn;
         this.tenantUrn = tenantUrn;

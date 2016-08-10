@@ -19,6 +19,7 @@ public enum SortOrder {
      */
     @Override
     public String toString() {
+
         return this.sortOrder;
     }
 
@@ -26,10 +27,10 @@ public enum SortOrder {
      * Gets the sort order enum entry for a String.
      *
      * @param sortOrderString the order string
-     *
      * @return the corresponding sort order or {@code ASC} if {@code sortOrderString} is invalid.
      */
     public static SortOrder fromString(String sortOrderString) {
+
         try {
             return valueOf(SortOrder.class, sortOrderString.toUpperCase());
         } catch (Exception e) {
