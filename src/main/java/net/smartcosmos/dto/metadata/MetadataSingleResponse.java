@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties({"version"})
+@JsonIgnoreProperties({ "version" })
 public class MetadataSingleResponse {
 
     private static final int VERSION = 1;

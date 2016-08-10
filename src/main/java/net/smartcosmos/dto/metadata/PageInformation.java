@@ -8,6 +8,7 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class PageInformation {
+
     // primitive types because of default values
     private final int size;
     private final long totalElements;
@@ -15,6 +16,7 @@ public class PageInformation {
     private final int number;
 
     public PageInformation() {
+
         this.size = 0;
         this.totalElements = 0;
         this.totalPages = 0;

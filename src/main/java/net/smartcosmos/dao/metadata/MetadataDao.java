@@ -115,7 +115,7 @@ public interface MetadataDao {
      * @param keys return metadata with given keys, or all metadata when keys is Empty
      * @return the {@link MetadataResponse} populated with values for the given keys
      */
-    Optional<MetadataResponse> findByOwner(String tenantUrn, String ownerType, String ownerUrn, Collection<String>keys);
+    Optional<MetadataResponse> findByOwner(String tenantUrn, String ownerType, String ownerUrn, Collection<String> keys);
 
     /**
      * Return all metadata entries associated to owners of a given type in the realm of a given tenant (paged).

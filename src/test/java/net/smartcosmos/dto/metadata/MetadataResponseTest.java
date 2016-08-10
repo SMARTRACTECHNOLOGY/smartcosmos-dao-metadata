@@ -1,24 +1,23 @@
 package net.smartcosmos.dto.metadata;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.json.JSONObject;
-import org.junit.Test;
-
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONObject;
+import org.junit.*;
+
+import static org.junit.Assert.*;
 
 public class MetadataResponseTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataResponse entity = MetadataResponse.builder().build();
+
+        MetadataResponse entity = MetadataResponse.builder()
+            .build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());
@@ -29,11 +28,13 @@ public class MetadataResponseTest {
      */
     @Test(expected = NoSuchMethodException.class)
     public void thatVersionHasNoSetter() throws Exception {
+
         MetadataResponse.class.getDeclaredMethod("setVersion", int.class);
     }
 
     @Test
     public void thatObjectMapperIgnoresVersion() throws JsonProcessingException {
+
         ObjectMapper mapper = new ObjectMapper();
 
         Map<String, Object> metadata = new HashMap<>();
@@ -56,6 +57,7 @@ public class MetadataResponseTest {
 
     @Test
     public void thatObjectMapperAcceptsNullMetadata() throws JsonProcessingException {
+
         ObjectMapper mapper = new ObjectMapper();
 
         MetadataResponse response = MetadataResponse.builder()
@@ -77,12 +79,14 @@ public class MetadataResponseTest {
 
     @Test
     public void thatBuilderAcceptsNullMetadata() {
+
         MetadataResponse response = MetadataResponse.builder()
             .metadata(null)
             .build();
 
         assertNotNull(response);
         assertNotNull(response.getMetadata());
-        assertTrue(response.getMetadata().isEmpty());
+        assertTrue(response.getMetadata()
+                       .isEmpty());
     }
 }

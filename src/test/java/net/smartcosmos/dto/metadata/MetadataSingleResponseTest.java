@@ -8,19 +8,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.junit.Test;
+import org.junit.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MetadataSingleResponseTest {
 
     @Test
     public void thatVersionIsSet() {
-        MetadataSingleResponse entity = MetadataSingleResponse.builder().build();
+
+        MetadataSingleResponse entity = MetadataSingleResponse.builder()
+            .build();
 
         assertNotNull(entity.getVersion());
         assertEquals(1, entity.getVersion());
@@ -31,11 +29,13 @@ public class MetadataSingleResponseTest {
      */
     @Test(expected = NoSuchMethodException.class)
     public void thatVersionHasNoSetter() throws Exception {
+
         MetadataSingleResponse.class.getDeclaredMethod("setVersion", int.class);
     }
 
     @Test
     public void thatObjectMapperIgnoresVersion() throws JsonProcessingException {
+
         ObjectMapper mapper = new ObjectMapper();
 
         Map<String, Object> metadata = new HashMap<>();
@@ -60,6 +60,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatObjectMapperAcceptsNullValue() throws JsonProcessingException {
+
         ObjectMapper mapper = new ObjectMapper();
 
         Map<String, Object> metadata = new HashMap<>();
@@ -86,6 +87,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderEmptyWorks() {
+
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
             .build();
         assertNotNull(metadata);
@@ -93,6 +95,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderKeyWorks() {
+
         final String key = "key";
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -104,6 +107,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderDataTypeWorks() {
+
         final String dataType = "dataType";
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -115,6 +119,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderOwnerUrnWorks() {
+
         final String ownerUrn = "ownerUrn";
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -126,6 +131,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderOwnerTypeWorks() {
+
         final String ownerType = "ownerType";
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -137,6 +143,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueStringWorks() {
+
         final Object value = "String";
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -148,6 +155,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueBooleanWorks() {
+
         final Object value = true;
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -159,6 +167,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueNumberWorks() {
+
         final Object value = 123;
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -170,6 +179,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueNumberNegativeWorks() {
+
         final Object value = -123;
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -181,6 +191,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueNumberCommaWorks() {
+
         final Object value = 123.45;
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -192,6 +203,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueJsonArrayWorks() {
+
         final Object value = new JSONArray();
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -203,6 +215,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueJsonObjectWorks() {
+
         final Object value = new JSONObject();
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -214,6 +227,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void thatBuilderValueNullWorks() {
+
         final Object value = null;
 
         MetadataSingleResponse metadata = MetadataSingleResponse.builder()
@@ -225,6 +239,7 @@ public class MetadataSingleResponseTest {
 
     @Test
     public void testAllArgsConstructor() {
+
         final String ownerUrn = "urn";
         final String ownerType = "type";
         final String key = "key";

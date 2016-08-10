@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor
-@JsonIgnoreProperties({ "version"})
+@JsonIgnoreProperties({ "version" })
 public class MetadataValueResponse {
 
     private static final int VERSION = 1;

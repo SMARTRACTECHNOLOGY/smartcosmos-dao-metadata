@@ -1,15 +1,16 @@
 package net.smartcosmos.dto.metadata;
 
-import org.junit.Test;
+import org.junit.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 public class PageInformationTest {
 
     @Test
     public void thatValuesAreInitializedWithBuilder() {
-        PageInformation pageInformation = PageInformation.builder().build();
+
+        PageInformation pageInformation = PageInformation.builder()
+            .build();
 
         assertNotNull(pageInformation);
 
@@ -28,6 +29,7 @@ public class PageInformationTest {
 
     @Test
     public void thatValuesAreInitializedWithConstructor() {
+
         PageInformation pageInformation = new PageInformation();
 
         assertNotNull(pageInformation);
@@ -47,6 +49,7 @@ public class PageInformationTest {
 
     @Test
     public void thatValuesCanBeSetWithBuilder() {
+
         final int expectedSize = 10;
         final int expectedNumber = 1;
         final long expectedTotalElements = 123;
