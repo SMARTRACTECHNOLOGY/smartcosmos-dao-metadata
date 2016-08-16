@@ -1,6 +1,7 @@
 package net.smartcosmos.dto.metadata;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.junit.*;
@@ -89,5 +90,22 @@ public class PageTest {
         assertNotNull(page);
         assertNotNull(page.getPage());
         assertEquals(pageInfo, page.getPage());
+    }
+
+    @Test
+    public void thatBuilderPageHasDefaultValues() {
+
+        Page<MetadataResponse> page = Page.<MetadataResponse>builder().build();
+
+        assertNotNull(page.getData());
+        Collection<MetadataResponse> data = page.getData();
+        assertTrue(data.isEmpty());
+
+        assertNotNull(page.getPage());
+        PageInformation pageInformation = page.getPage();
+        assertEquals(0, pageInformation.getNumber());
+        assertEquals(0, pageInformation.getSize());
+        assertEquals(0, pageInformation.getTotalPages());
+        assertEquals(0, pageInformation.getTotalElements());
     }
 }

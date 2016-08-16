@@ -24,7 +24,11 @@ public class Page<T> {
             this.data.addAll(data);
         }
 
-        this.page = page;
+        if (page != null) {
+            this.page = page;
+        } else {
+            this.page = new PageInformation();
+        }
     }
 
     /*
