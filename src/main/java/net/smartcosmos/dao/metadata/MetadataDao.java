@@ -107,6 +107,16 @@ public interface MetadataDao {
     Optional<MetadataValueResponse> findByKey(String tenantUrn, String ownerType, String ownerUrn, String key);
 
     /**
+     * Finds a metadata entity for an associated entity matching a specified key, regardless of tenant.
+     *
+     * @param ownerType the reference type of the associated entities
+     * @param ownerUrn the URN of the associated entity
+     * @param key the key of the metadata entity
+     * @return the value Object assigned to the given key or Optional.empty() in case of a non-existing key
+     */
+    Optional<MetadataValueResponse> findByKeyNoTenant(String ownerType, String ownerUrn, String key);
+
+    /**
      * Find all metadata owned by a thing in the realm of a given tenant.
      *
      * @param tenantUrn the tenant URN
