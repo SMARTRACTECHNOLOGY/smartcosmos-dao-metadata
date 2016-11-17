@@ -1,6 +1,6 @@
 = SMART COSMOS DAO Metadata Release Notes
 
-== UNRELEASED
+== Release 3.0.1 (November 17, 2016)
 
 === New Features
 
